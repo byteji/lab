@@ -1,0 +1,34 @@
+public static void main(String[] args) {System.out.print("Input = ");//รับค่า
+        int n = new Scanner(System.in).nextInt();
+        boolean a = true;//ใช้บูลินกำหนด aเป็นจริง
+        if(n>=2){//รับค่าต้องมากกว่าหรือเท่ากับ2 ตามโจทยให้มา
+        for(int i=2;i<n;i++){ //เริ่มที่iเท่ากับ2น้อยกว่าnโจทย์ เลขเฉพาะ2เป็นตัวแรก
+            a = true;
+            if(n%i==0){//เอาn%iเปรียบค่าเท่ากับ0หรือไม
+                a = false;break; //ถ้ากำหนดaเป็นเท็จ
+            }
+        }
+        if(a){ 
+            System.out.println(n+" Is prime number ");
+            for(int i=2;i<n;i++){
+                for(int j=2;j<i;j++){
+                    a = true;  //เช็คคำตอบถ้าjหารiแล้วเท่ากับ0แล้วเป็นเท็จจะไปทำต่อ 
+                    if(i%j==0){
+                        a = false;break;//
+                    }
+                }
+                if(a)
+                    System.out.print(i+" "); //แสดงผลถ้าเป็นจำนวนเฉพาะ 
+            }
+            if(n!=2)
+                System.out.print(n+" ");//nต้องไม่เท่ากับ2
+        }
+        else
+            System.out.println(" No is prime "); //แสดงค่าที่ไม่ใช่จำนวนเฉพาะ
+        }
+        else
+            System.out.println("No prime number ");//ในกรณีป้อนค่าน้อยกว่า2เช่น1,0 
+    }
+}
+
+    

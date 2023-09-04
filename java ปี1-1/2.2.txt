@@ -1,0 +1,31 @@
+  Scanner S = new Scanner(System.in);
+        double a,b,c,d,e;
+        System.out.println("input1 ");
+        a = S.nextDouble();
+        
+        System.out.println("input2");
+        b= S.nextDouble();
+        
+        System.out.println("input3");
+        c = S.nextDouble();
+        
+        System.out.println("input4");
+        d = S.nextDouble();
+        
+        System.out.println("input5");
+        e =S.nextDouble();
+        double max=a,min=a,avg;
+        if(b>max) max=b;
+        if(c>max) max=c;
+        if(d>max) max=d;
+        if(e>max) max=e;
+        
+        System.out.println(" max"+max);
+      
+          if(b<min) min=b;
+           if(c<min) min=c;
+            if(d<min) min=d;
+             if(e<min) min=e;
+                System.out.println(" min"+min);
+                avg=(a+b+c+d+e)/5;
+                System.out.println(" Avg"+avg);

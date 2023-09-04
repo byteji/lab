@@ -1,0 +1,300 @@
+class Human{
+        private int HP;
+        private int MP;
+    private String name;
+        public int getHP(){
+            return HP;
+        }
+        public void setHP(int HP){
+            this.HP = HP;
+        }
+        public int getMP(){
+            return MP;
+        }
+        public void setMP(int MP){
+            this.MP = MP;
+        }
+          public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name= name;
+    }  
+    
+            
+}
+
+
+    class Knight extends Human{
+        private int MP;
+        private int ATK;
+
+        public int getATK(){
+            return ATK;
+        }
+        public void setATK(int ATK){
+            this.ATK = ATK;
+        }
+        public int getMP(){
+            return MP;
+        }
+        public void setMP(int MP){
+            this.MP = MP;
+        }
+        public void Attack(Human h){
+            h.setHP(h.getHP()-this.ATK);
+            if(h.getHP()<=0){
+                h.setHP(0);
+                System.out.println("HP is 0");
+            }           
+        }
+        public Knight(int HP,int MP,int ATK,String Name){
+            this.setHP(HP);
+            this.setATK(ATK);
+            this.setMP(MP);
+           this.setName("sun");
+           
+        }
+        
+    }
+
+    class Mage extends Human{
+        int MP;
+        int MATK;
+           private String name;
+         public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name= name;
+    }  
+           public int getMATK(){
+            return MATK;
+        }
+        public void setMATK(int MATK){
+            this.MATK = MATK;
+        }
+        
+        public void FireBolt(Human h){
+            if(this.MP >=30){
+                h.setHP(h.getHP()-this.MATK*2);
+                if(h.getHP()<=0){
+                    h.setHP(0);
+                    System.out.println("HP is 0");
+                }
+                this.setMP(this.getMP()-30);
+            }
+            else{
+                System.out.println("MP is not enough");
+            }
+        }
+        public Mage(int HP,int MP,int MATK,String Name){
+            this.setHP(HP);
+            this.setMATK(MATK);
+            this.setMP(MP);
+            this.setName("mo");
+        }
+    }
+        class Archer extends Human{
+            private int arrow;
+            private int ATK;
+            
+         
+        
+            
+            public Archer(int HP,int MP,int ATK,String Name){
+                this.setHP(HP);
+                this.setATK(ATK);
+                this.setMP(MP);
+                 this.setName("van");
+ }
+        public void Attack(Human h){ 
+             if(arrow>=1){
+            arrow -= 1;
+            h.setHP(h.getHP()-this.ATK);
+            if(h.getHP()<=0){
+            h.setHP(0);
+            System.out.println("Hp is 0");
+ }
+ }
+        else{
+            System.out.println("no more arrow");
+ }
+ }
+                public void ArrowCrafting(){
+                this.arrow+=100;
+ }
+                public int getATK() {
+                return ATK;
+ }
+                    public void setATK(int ATK) {
+                 this.ATK = ATK;
+                   
+                    }
+                     public int getarrow(){
+            return arrow;
+        }
+        public void setarrow(int arrow){
+            this.arrow = arrow;
+        }
+           
+        }  
+        
+                        class Hunter extends Archer{
+             private int hawkATK;
+             public Hunter(int HP, int MP, int ATK,int hawkATK, String Name) {
+                super(HP, MP, ATK,"name");
+                 this.hawkATK = hawkATK;
+         }
+                 public void hawkAttack(Human h){
+                    h.setHP(h.getHP()-this.hawkATK);
+                     if(h.getHP()<=0){
+                        h.setHP(0);
+                     System.out.println("Hp is 0");
+ } 
+  }
+               public void Attack(Human h){
+                  if(getarrow()>=1){
+                    setarrow (getarrow() - 1);
+                     if(Math.random()>0.5){
+                      System.out.println("HawkATK!!!");
+                     h.setHP(h.getHP()-this.hawkATK);
+           }
+                      h.setHP(h.getHP()-this.getATK());
+                     if(h.getHP()<=0){
+                    h.setHP(0);
+                            System.out.println("Hp is 0");
+                             }
+                else{
+                            System.out.println("no more arrow");
+         } 
+            }
+               }
+                        }
+               class yi extends Human{
+        private int GATK;
+        private int ATK;
+
+        public int getATK(){
+            return ATK;
+        }
+        public void setATK(int ATK){
+            this.ATK = ATK;
+        }
+        public int getGATK(){
+            return GATK;
+        }
+        public void setGATK(int MP){
+            this.GATK = GATK;
+        }
+        public void run(Human h){
+            System.out.println("BYTE" + " run "+h.getName());
+            h.setHP(h.getHP()-2*this.ATK);
+            if(h.getHP()<=0){
+                h.setHP(0);
+                System.out.println(" DiE ");
+            } 
+               else{           
+            System.out.println("HP "+h.getName()+" = "+h.getHP());
+            
+            
+        }
+        }
+           public yi(int HP,int GATK,int ATK,String Name){
+            this.setHP(HP);
+            this.setATK(ATK);
+            this.setMP(GATK);
+             this.setName("");
+            
+        }
+    }
+
+
+      class FUN extends Mage{
+       public FUN(int HP,int MP,int MATK,String Name) {
+        super(HP, MP, MATK, Name);
+    }
+
+  public void Fire(Human target,int fire){
+           System.out.println("FUCK "+" Fire "+target.getName());
+            if(this.getMP()>=30){
+                target.setHP(target.getHP()-fire*3);
+                      if(target.getHP()<=0){
+                this.setHP(0);
+                    System.out.println(" DIE ");
+                    
+                }
+                   else{           
+            System.out.println("HP "+target.getName()+" = "+target.getHP());
+            }
+            
+                this.setMP(this.getMP()-30);
+            }
+           
+            else{
+                System.out.println("MP is not enough");
+            }
+        }
+                 public void PO(Human target,int PO){
+           System.out.println("FUCK "+" PO "+target.getName());
+            if(this.getMP()>=10){
+                target.setHP(target.getHP()-PO*5);
+                      if(target.getHP()<=0){
+                this.setHP(0);
+                    System.out.println(" DIE ");
+                    
+                }
+                   else{           
+            System.out.println("HP "+target.getName()+" = "+target.getHP());
+            }
+            
+                this.setMP(this.getMP()-20);
+            }
+           
+            else{
+                System.out.println("MP is not enough");
+            }
+        }
+      public void DE(Human target,int DE){
+           System.out.println("FUCK"+" DE "+target.getName());
+            if(this.getMP()>=5){
+                target.setHP(target.getHP()-DE*2);
+                      if(target.getHP()<=0){
+                this.setHP(0);
+                    System.out.println(" DIE ");
+                    
+                }
+                   else{           
+            System.out.println("HP "+target.getName()+" = "+target.getHP());
+            }
+            
+                this.setMP(this.getMP()-2);
+            }
+           
+            else{
+                System.out.println("MP is not enough");
+            }
+      
+         
+         }
+      
+
+      }
+
+public class Lab61 {
+
+   
+    public static void main(String[] args) {
+         Knight k = new Knight(30,20,10,"sun");
+         Archer d = new Archer(10,10,10,"fu");
+        Mage m = new Mage(20,50,20,"mo");
+        Hunter h = new Hunter(40,20,20,20,"van"); 
+         yi a = new yi(30,50,10,"BYTE");
+             FUN  r = new FUN (40,90,20,"FUCK");  
+            r.PO(k, 2);
+          r.Fire(d, 3);
+          r.PO(m, 4);
+          r.DE(h, 2);
+          r.Fire(h, 1);
+                    }
+}

@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Bb {
+
+    
+    public static void main(String[] args) {  float x,y;
+     
+         String A;
+         {
+         System.out.println("input1");
+   x=new Scanner(System.in).nextFloat();
+       
+        System.out.println("operator");
+        A =new Scanner(System.in).nextLine();
+        System.out.println("input2");
+       y=new Scanner (System.in).nextFloat();
+       if(A.equals("+")) 
+       {
+           System.out.println("Results:"+(x+y));
+       }
+       else if (A.equals("-"))
+       {
+           System.out.println("Results:"+(x-y));
+    }
+         
+          if (A.equals("*"))
+          
+              System.out.println("Results"+(x*y));
+         }
+           if (A.equals("/"))
+       
+           System.out.println("Results:"+(x/y));
+    
+         
+    }
+}

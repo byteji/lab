@@ -1,0 +1,75 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+
+
+class panel extends JPanel implements ActionListener {
+
+    BufferedImage image1, image2, image3;
+    int x, y, i;
+
+    panel() throws IOException {
+        this.image1 = ImageIO.read(new File("C:\\Users\\GELAB\\Desktop\\1.jpg"));
+        this.image2 = ImageIO.read(new File("C:\\Users\\GELAB\\Desktop\\2.jpg"));
+        this.image3 = ImageIO.read(new File("C:\\Users\\GELAB\\Desktop\\3.jpg"));
+
+        i = 0;
+        x = 0;
+        y = 100;
+        new Timer(50, this).start();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        if (i % 3 == 0) {
+            g.drawImage(this.image1, x, y, null);
+        }
+        if (i % 3 == 1) {
+            g.drawImage(this.image2, x, y, null);
+        }
+        if (i % 3 == 2) {
+            g.drawImage(this.image3, x, y, null);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae
+    ) {
+        if (x + 162 < 800 + 162) {
+            x++;
+        } else {
+            x = -162;
+        }
+        if (i <= 3) {
+            i++;
+        } else {
+            i = 0;
+        }
+
+        repaint();
+    }
+}
+
+class Frame extends JFrame {
+
+    Frame() throws IOException {
+        this.add(new panel());
+        this.setTitle("Animetion");
+        this.setSize(800, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+}
+
+public class Lab21 {
+
+    public static void main(String[] args) throws IOException {
+        new Frame();
+    }
+}

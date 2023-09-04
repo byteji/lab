@@ -1,0 +1,236 @@
+package javaapplication5;
+
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
+
+
+
+class sound implements Runnable {
+
+    Thread t;
+
+    sound() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        File f = new File("C:\\Users\\user\\Desktop\\ke.wav");
+        Clip c = AudioSystem.getClip();
+        AudioInputStream audioinput = AudioSystem.getAudioInputStream(f);
+        c.open(audioinput);
+        c.loop(Clip.LOOP_CONTINUOUSLY);
+
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}
+
+class panel extends JPanel implements ActionListener, Runnable {
+
+    Thread t1, t2, t3;
+    JButton Lbutton, Rbutton, Sbutton;
+    BufferedImage L1, L2, L3, R1, R2, R3, bg;
+    int x, x2, y, y2, i, j, swit;
+    char cleft, cRight;
+
+    panel() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+        new sound();
+        t1 = new Thread(this);
+        j = 0;
+        swit = 0;
+        cleft = 60;
+        cRight = 62;
+        Lbutton = new JButton("" + cleft);
+        Rbutton = new JButton("" + cRight);
+        Sbutton = new JButton("Stop");
+        this.setLayout(new FlowLayout());
+        Lbutton.addActionListener(this);
+        this.add(Lbutton);
+        Rbutton.addActionListener(this);
+        this.add(Rbutton);
+        Sbutton.addActionListener(this);
+        this.add(Sbutton);
+
+        this.L1 = ImageIO.read(new File("C:\\Users\\user\\Desktop\\1.png"));
+        this.L2 = ImageIO.read(new File("C:\\Users\\user\\Desktop\\2.png"));
+        this.L3 = ImageIO.read(new File("C:\\Users\\user\\Desktop\\3.png"));
+        this.R1 = ImageIO.read(new File("C:\\Users\\user\\Desktop\\a.png"));
+        this.R2 = ImageIO.read(new File("C:\\Users\\user\\Desktop\\b.png"));
+        this.R3 = ImageIO.read(new File("C:\\Users\\user\\Desktop\\c.png"));
+        this.bg = ImageIO.read(new File("C:\\Users\\user\\Desktop\\5.png"));
+
+        i = 0;
+        x = 0;
+        y = 450;
+        x2 = 0;
+        y2 = 0;
+        //new Timer(1, this).start();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.drawImage(this.bg, x2, y2, null);
+        if (j == 1) {
+            if (i == 0) {
+                g.drawImage(this.L1, x, y, null);
+
+            }
+            if (i % 3 == 0) {
+                g.drawImage(this.L1, 0, 0, null);
+
+            }
+            if (i % 3 == 1) {
+                g.drawImage(this.L2, 0, 0, null);
+
+            }
+            if (i % 3 == 2) {
+                g.drawImage(this.L3, 0, 0, null);
+
+            }
+            i++;
+            if (x > 400 - 50) {
+
+                x = x - 2;
+            }
+            if (x2 == 0) {
+                x2 = -3390 + 800;
+                x2++;
+            }
+            x2++;
+
+        } else if (j == 2) {
+            if (i == 0) {
+                g.drawImage(this.R1, x, y, null);
+
+            }
+            if (i % 3 == 0) {
+                g.drawImage(this.R1, 0, 0, null);
+
+            }
+            if (i % 3 == 1) {
+                g.drawImage(this.R2, 0, 0, null);
+
+            }
+            if (i % 3 == 2) {
+                g.drawImage(this.R3, 0, 0, null);
+
+            }
+            i++;
+            if (x < 400 ) {
+
+                x = x + 2;
+            }
+            if (x >= 3000) {
+                x2 = 0;
+            }
+            x2--;
+        } else {
+            g.drawImage(this.bg, x, y, null);
+        }
+
+    }
+
+    @Override
+    public void run() {
+
+        if (swit == 1) {
+
+            while (true) {
+
+                repaint();
+                try {
+                    Thread.sleep(60);
+
+                } catch (InterruptedException ex) {
+
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae
+    ) {
+        if (ae.getSource() == Lbutton) {
+            swit = 1;
+            j = 1;
+            try {
+                soundEF();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (ae.getSource() == Rbutton) {
+            swit = 1;
+            j = 2;
+            try {
+                soundEF();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (ae.getSource() == Sbutton) {
+            swit = 0;
+            j = 0;
+            try {
+                soundEF();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(panel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        repaint();
+        t1.start();
+    }
+
+    public void soundEF() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        File f = new File("C:\\Users\\user\\Desktop\\ke.wav");
+        Clip c = AudioSystem.getClip();
+        AudioInputStream audioinput = AudioSystem.getAudioInputStream(f);
+        c.open(audioinput);
+       c.loop(0);
+    }
+}
+
+class Frame extends JFrame {
+
+    Frame() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+        this.add(new panel());
+        this.setTitle("Animetion");
+        this.setSize(1000, 1000);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+}
+
+public class NewClass {
+
+    public static void main(String[] args) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+        new Frame();
+    }
+}

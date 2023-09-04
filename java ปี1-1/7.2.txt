@@ -1,0 +1,147 @@
+import java.awt.*;
+import javax.swing.*;
+    class Panelnaja extends JPanel{
+ @Override
+          public void paint(Graphics g){
+                super.paint(g);
+            
+                g.setColor(Color.ORANGE);
+              g.fillOval(375, 87, 260, 200); //หัว
+             g.setColor(Color.BLACK);
+               g.drawOval(375, 87, 260, 200);
+                g.setColor(Color.BLACK);
+               g.drawOval(375, 87, 260, 200);                
+           
+               g.setColor(Color.BLACK);
+            g.fillOval(430, 160, 10, 30);//ตาซ้าย
+            
+             g.fillOval(550, 160, 10, 30);//ตาขวา
+             
+             g.drawArc(415,140,40,40,0,165);
+             g.drawArc(415,141,40,40,0,165);//คิ้วซ้าย
+              g.drawArc(536,140,40,40,0,165);
+             g.drawArc(536,141,40,40,0,165);//คิ้วขวา
+             
+             g.setColor(Color.BLACK);
+             g.drawArc(445,250,100,20,0,-166); //ปาก
+             g.drawArc(445,251,100,20,0,-166);
+             
+                  
+             
+            g.setColor(Color.WHITE);
+               g.fillOval(480, 200, 10, 10);
+             g.setColor(Color.red);
+             g.fillOval(460, 200, 80, 60);//จมูก
+            g.setColor(Color.WHITE);
+               g.fillOval(490, 220, 10, 10); //รูจมูก
+             g.setColor(Color.BLACK);
+             g.drawOval(460, 200, 80, 60);
+            
+             
+             g.setColor(Color.RED);
+             g.fillRect(455,288 , 100, 150); //ตัว
+             g.fillRect(455,289 , 100, 150);
+            
+            
+             g.setColor(Color.YELLOW);  //ที่ห้อย
+             g.fillOval(483, 300, 45, 50);
+            
+             g.setColor(Color.BLACK);
+             g.fillOval(490, 310, 9, 13);
+             
+             g.setColor(Color.BLACK);
+             g.fillOval(509, 310, 9, 13);
+             
+             g.drawArc(499,325,18,15,0,-200); //ปากที่ห้อย
+             g.drawArc(499,326,18,15,0,-200);
+             g.drawArc(499,327,18,15,0,-200);
+             
+             g.setColor(Color.yellow); //เข็ดขัด
+             g.fillRoundRect(456, 400, 98, 30, 4, 8);
+             g.setColor(Color.BLACK);
+             g.drawRoundRect(456, 400, 98, 30, 4, 8);
+            g.setColor(Color.BLACK);
+             g.drawRoundRect(456, 400, 98, 30, 4, 8);
+           g.setColor(Color.BLACK);
+             g.drawRoundRect(456, 400, 98, 30, 4, 8);
+             
+             g.setColor(Color.WHITE);
+             g.fillRoundRect(489, 400, 36, 30, 4, 8);
+             g.setColor(Color.BLACK);
+             g.drawRoundRect(489, 400, 36, 30, 4, 8);
+             g.setColor(Color.BLACK);
+             g.drawRoundRect(489, 400, 36, 30, 4, 8);
+            
+             g.setColor(Color.yellow);
+             g.fillRoundRect(496, 410, 20, 10, 4, 8);
+             g.setColor(Color.BLACK);
+             g.drawRoundRect(496, 410, 20, 10, 4, 8);
+             
+            
+             g.fillRect(425,288 , 30, 100);//แขน
+            
+             g.setColor(Color.ORANGE);  //มือ
+             g.fillArc(425,382,30,30,0,-360);  
+           
+             
+              
+                g.setColor(Color.BLACK);
+              g.fillRect(554,288 , 30, 100);//แขน
+              g.setColor(Color.ORANGE); //มือ
+            g.fillArc(555,380,30,30,0,-360);
+             
+             
+               g.setColor(Color.RED);
+              g.fillRoundRect(460, 438, 30, 69, 4, 8);
+             
+                
+              g.fillRoundRect(520, 438, 30, 69, 4, 8);
+             
+              g.setColor(Color.YELLOW);
+              g.fillRoundRect(460, 440, 30, 18, 4, 8);
+             
+                
+              g.fillRoundRect(520, 440, 30, 18, 4, 8);
+              
+              g.setColor(Color.ORANGE);
+              g.fillOval(458, 505, 34, 15);
+              
+             g.fillOval(520, 505, 34, 15);
+             
+             
+             
+             g.setColor(Color.GREEN);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+                g.drawString("Anpanman", 165 , 279);
+            
+                g.setColor(Color.darkGray);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+                g.drawString("กษิดิส สอนรอด", 167, 340);
+                
+            g.setColor(Color.RED);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g.drawString("By 59122519039", 167, 380);
+            
+            
+ }          
+ }
+
+class framenaja extends JFrame {
+    framenaja(){
+            Panelnaja p = new Panelnaja();
+
+        this.add(p);
+        this.setSize(800,600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+ }
+} 
+
+public class Lab7 {
+
+    
+    public static void main(String[] args) {
+            new framenaja();
+ }
+} 
+    

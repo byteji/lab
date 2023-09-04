@@ -1,0 +1,91 @@
+package lab5;
+class Car{
+  private int V;
+  private int S;
+  private String Brand;
+  
+  Car(){
+      this.V = 1;
+      this.S = 0;
+  }
+  
+  Car(String Brand){
+      this.Brand = Brand;
+  }
+  public int getV(){
+      return V;
+  } 
+  public void setV(int V){
+      this.V = V;
+  }public int getS(){
+      return S;
+  }
+  public void setS(int S){
+      this.S = S;
+  }
+  public String getBrand(){
+      return Brand;
+  }
+  public void setBrand(String Brand){
+      this.Brand = Brand;
+  }
+  public void V(){
+      this.V = this.V+1;
+      this.S = this.S+this.V;
+      System.out.println("Brand : "+this.Brand+" V car : "+this.V+" S car : "+this.S);
+  }
+  public void Brake(){
+     this.V = this.V-1;
+     this.S = this.S+this.V;
+     if(this.S <= 0){
+         
+        System.out.println("car stop!!");
+        System.out.println("Brand : "+this.Brand+" V car : 0"+" S car : 0"); 
+     }
+     else{
+     if(this.V <= 0){
+         System.out.println("car stop!!");
+         System.out.println("Brand : "+this.Brand+" V car : 0"+" S car : "+this.S);
+     }
+     else{
+             System.out.println("Brand : "+this.Brand+" V car : "+this.V+" S car : "+this.S);
+        }
+      }
+    }
+  }
+public class Lab5 {
+    public static void main(String[] args) {
+        Car [] c = new Car[5];
+        c[0] = new Car("Mitsubishi");
+        c[1] = new Car("Honda");
+        c[2] = new Car("Mazda");
+        c[1].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[1].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[1].Brake();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[0].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[0].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[0].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[0].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[0].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[0].Brake();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[2].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[2].Brake();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[2].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[2].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+        c[2].V();
+            System.out.println("= = = = = = = = = = = = = = ");
+    }    
+}

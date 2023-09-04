@@ -1,0 +1,217 @@
+package javaapplication8;
+class Human{
+    private int HP;
+    private int MP;
+    private String Name;
+    public int getHP(){
+        return HP;
+    }
+    public void setHP(int HP){
+        this.HP = HP;
+    }
+     public int getMP() {
+        return MP;
+    }
+    public void setMP(int MP) {
+        this.MP = MP;
+    }
+    public String getName() {
+        return Name;
+    }
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+}
+class Knight extends Human{
+    private int ATK;
+    
+    public int getATK() {
+        return ATK;
+    }
+    public void setATK(int ATK) {
+        this.ATK = ATK;
+    }
+    public void Attack(Human h){
+         System.out.println(this.getName()+" Attack!! "+h.getName());
+        h.setHP(h.getHP()-this.ATK);
+        if(h.getHP()<=0);{
+        System.out.println(h.getName()+" HP is 0");
+      }
+        System.out.println("= = = = = = = = = = = = = = ");
+    }
+    public Knight(int HP,int MP,int ATK,String Name){
+      this.setHP(HP);
+      this.setMP(MP);
+      this.setATK(ATK);
+      this.setName(Name);
+    }
+}
+class Mage extends Human{
+    private int MATK;
+
+    public int getMATK() {
+        return MATK;
+    }
+    public void setMATK(int MATK) {
+        this.MATK = MATK;
+    }
+    public void FireBoat(Human h){
+         System.out.println(this.getName()+" Fireboat!! "+h.getName());
+        if(this.getMP()>=30){
+            h.setHP(h.getHP()-this.MATK*2);
+            if(h.getHP()<=0){
+                h.setHP(0);
+                System.out.println(h.getName()+" HP is 0");
+            }
+            else{
+                    System.out.println(h.getName()+" Hp: "+h.getHP());
+                    }
+            this.setMP(this.getMP()-30);
+        }
+        else{
+            System.out.println("MP is not enough");
+        }
+        System.out.println("= = = = = = = = = = = = = = ");
+    }
+    public Mage(int HP,int MP,int MATK,String Name){
+        this.setHP(HP);
+        this.setMP(MP);
+        this.setMATK(MATK);
+        this.setName(Name);
+    }
+}
+class Archer extends Human{
+    private int arrow;
+    private int ATK;
+    
+    public Archer(int HP,int MP,int ATK,String Name){
+        this.setHP(HP);
+        this.setATK(ATK);
+        this.setMP(MP);
+        this.setName(Name);
+    }
+    public void Attack(Human h){
+         System.out.println(this.getName()+" Attack!! "+h.getName());
+        if(getArrow()>=1){
+            setArrow(getArrow() - 1);
+                    h.setHP(h.getHP()-this.getATK());
+                    if(h.getHP()<=0){
+                        h.setHP(0);
+                        System.out.println(h.getName()+" HP is 0");
+                    }
+                    else{
+                        System.out.println(h.getName()+" Hp: "+h.getHP());
+                    }
+        }
+        else{
+            System.out.println("no more arrow");
+        }
+        System.out.println("= = = = = = = = = = = = = = ");
+    }
+    public void ArrowCrafting(){
+        this.setArrow(this.getArrow() + 100);
+    }
+    public int getATK() {
+        return ATK;
+    }
+    public void setATK(int ATK) {
+        this.ATK = ATK;
+    }  
+    public int getArrow() {
+        return arrow;
+    }
+    public void setArrow(int arrow) {
+        this.arrow = arrow;
+    }
+}
+class Hunter extends Archer{
+    private int hawkATK;
+    public Hunter (int HP,int MP,int ATK,int hawkATK,String Name){
+        super(HP,MP,ATK,Name);
+        this.hawkATK = hawkATK;
+    }
+    public void hawkAttack(Human h){
+         System.out.println(this.getName()+" HawkAttack!! "+h.getName());
+        h.setHP(h.getHP()-this.hawkATK);
+        if(h.getHP()<=0){
+            h.setHP(0);
+            System.out.println(h.getName()+" HP is 0");
+        }
+        else{
+            System.out.println(h.getName()+" Hp: "+h.getHP());
+        }
+        System.out.println("= = = = = = = = = = = = = = ");
+    }
+    public void Attack(Human h){
+         System.out.println(this.getName()+" Attack!! "+h.getName());
+        if(getArrow()>=1){
+            setArrow(getArrow() - 1);
+            if(Math.random()>0.5){
+                System.out.println("HawkATK!!!");
+                h.setHP(h.getHP()-this.hawkATK);
+            }
+            h.setHP(h.getHP()-this.getATK());
+            if(h.getHP()<=0){
+                h.setHP(0);
+                System.out.println(h.getName()+" HP is 0");
+            }
+            else{
+                System.out.println(h.getName()+" Hp: "+h.getHP());
+            }
+        }
+        else{
+            System.out.println("no more arrow");
+        }
+        System.out.println("= = = = = = = = = = = = = = ");
+    }
+}
+class Assassin extends Mage{
+    public Assassin(int HP,int MP,int MATK,String Name){
+        super(HP,MP,MATK,Name);
+    }
+        public void Shadowblade(Human h){
+            System.out.println(this.getName()+" Shadowblade!! "+h.getName());
+            if(this.getMP()>=50){
+                h.setHP(h.getHP()-this.getMATK());
+                if(Math.random()>0.5){
+                    System.out.println("DoubleAttack!!!");
+                    h.setHP(h.getHP()-this.getMATK());
+                }
+                if(h.getHP()<=0){
+                    h.setHP(0);
+                    System.out.println(h.getName()+" HP is 0");
+                }
+                else{
+                    System.out.println(h.getName()+" Hp: "+h.getHP());
+                }
+                this.setMP(this.getMP()-50);
+            }
+            else{
+                System.out.println("MP is not enough");
+            }
+            System.out.println("= = = = = = = = = = = = = = ");
+        }
+}
+public class JavaApplication8 {
+    public static void main(String[] args) {
+        Knight k = new Knight(30,20,10,"Knight");
+        Knight k2 = new Knight(10,10,10,"KnightII");
+        Mage m = new Mage(20,50,20,"Mage");
+        System.out.println("======BATTLE======");
+        k.Attack(k2);
+        m.FireBoat(k);
+        m.FireBoat(k2);
+        Archer a = new Archer(30,20,10,"Archer");
+        a.Attack(m);
+        a.ArrowCrafting();
+        a.Attack(m);
+        a.Attack(m);
+        Hunter h = new Hunter(40,20,20,20,"Hunter");
+        h.ArrowCrafting();
+        h.Attack(a);
+        Assassin s = new Assassin(50,100,30,"Assassin");
+        s.Shadowblade(h);
+        s.Shadowblade(h);
+    }
+    
+}

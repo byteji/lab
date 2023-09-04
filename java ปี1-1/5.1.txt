@@ -1,0 +1,103 @@
+package lab5;
+class knight{
+  private int HP;
+  private int MP;
+  private int Atk;
+  private int Def;
+  private String Name;
+  
+  knight(int HP,int MP,int Atk,int Def,String Name){
+      this.HP = HP;
+      this.MP = MP;
+      this.Atk = Atk;
+      this.Def = Def;
+      this.Name = Name;
+  }
+  public int getHP(){
+      return HP;
+  } 
+  public void setHP(int HP){
+      this.HP = HP;
+  }
+  public int getMP(){
+      return MP;
+  }
+  public void setAtk(int Atk){
+      this.Atk = Atk;
+  }
+  public int getDef(){
+      return Def;
+  }
+  public void setDef(int Def){
+      this.Def = Def;
+  }
+  public String getName(){
+      return Name;
+  } 
+  public void SetName(String Name){
+      this.Name = Name;
+  }
+  public void checkHP(knight target){
+      if(target.HP<=0){
+          System.out.println(target.Name+" knockout");
+      }
+      else{
+          System.out.println(target.Name+" HP : "+target.HP);
+      }
+  }
+  public void Atk(knight target){
+      System.out.println(this.Name+" Attack!! "+target.Name);
+      target.HP = target.HP-(this.Atk-target.Def);
+      this.checkHP(target);
+  }
+  public void Stun(knight target,int stunLv){
+      System.out.println(this.Name+" Stun!! "+target.Name);
+      this.MP = this.MP-150;
+      if(this.MP<0){
+          System.out.println("No MP!!"); 
+          System.out.println(target.Name+" HP : "+target.HP);
+      }
+      else{
+      target.HP = target.HP-(((this.Atk+25)*stunLv)-target.Def);
+      if(target.HP<=0){
+          System.out.println(target.Name+" knockout");
+      }
+      else
+          System.out.println(target.Name+" HP : "+target.HP+"(Stuns 2s.)"); 
+      }
+  }
+}   
+public class Lab5 {
+    public static void main(String[] args) {
+        knight[] a = new knight[5];
+     a[0] = new knight(1200,250,125,60,"Archer");
+     a[1] = new knight(950,175,250,50,"Assassin");
+     a[2] = new knight(1500,200,100,80,"Stang");
+        System.out.println("======BATTLE======");
+     a[0].Atk(a[1]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[0].Atk(a[1]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[1].Atk(a[0]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[1].Stun(a[0], 2);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[1].Atk(a[0]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[0].Atk(a[1]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[0].Stun(a[2], 2);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[2].Atk(a[1]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[2].Stun(a[0], 1);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[2].Stun(a[0], 4);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[1].Atk(a[0]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     a[1].Atk(a[0]);
+        System.out.println("= = = = = = = = = = = = = = ");
+     
+    }    
+}

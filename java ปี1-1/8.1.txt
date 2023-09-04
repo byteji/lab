@@ -1,0 +1,66 @@
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+class RaviPanel extends JPanel implements ActionListener{
+    BufferedImage img;
+    int N = 1;
+    int[] x;
+    int[] y;
+    Timer t;
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+        for (int i = 0; i < N; i++) {
+            g.drawImage(img, x[i], y[i], this);
+        }
+    }
+    RaviPanel() throws IOException{
+        x = new int[N];
+        y = new int[N];
+        for (int i = 0; i < N; i++) {
+           x[i] = i*50;
+           y[i] = i*50;
+        }
+        img = ImageIO.read(new File("C:\\Users\\user\\Desktop\\รูป\\Capture.Png"));
+        t = new Timer(10,this);
+        t.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < N; i++) {
+            if(x[i]<640)
+                x[i] = x[i]+i+1;
+            else
+                x[i] = -(img.getWidth());
+        }
+
+        repaint();
+    }
+}
+class RaviFrame extends JFrame{
+    RaviPanel panel;
+    RaviFrame() throws IOException{
+        panel = new RaviPanel();
+        this.add(panel);
+    }
+}
+        
+
+        public class Lab81 {
+
+        public static void main(String[] args) throws IOException {
+        RaviFrame f = new RaviFrame();
+        f.setSize(640,480);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+      
+    }
+    
+}
